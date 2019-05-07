@@ -66,7 +66,7 @@ public class Controller {
 
         signUpButton.setOnAction(event -> {
             try {
-                MainController.showScene(signUpButton, "/samples/signUp.fxml");
+                MainController.showModalScene(event, "/samples/signUp.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -75,7 +75,7 @@ public class Controller {
 
         signInAdminButton.setOnAction(event -> {
             try {
-                MainController.showScene(signInAdminButton, "/samples/signInAdmin.fxml");
+                MainController.showModalScene(event, "/samples/signInAdmin.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -52,13 +52,26 @@ public class AdminPanelController {
 
         addButton.setOnAction(event -> {
             try {
-                MainController.showScene(addButton, "/samples/addDialogWindow.fxml");
+                MainController.showModalScene(event, "/samples/addDialogWindow.fxml");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        removeButton.setOnAction(event -> {
+            try {
+                MainController.showModalScene(event, "/samples/removeDialogWindow.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
 
         updateButton.setOnAction(event -> {
+            try {
+                initData();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         });
     }
 
