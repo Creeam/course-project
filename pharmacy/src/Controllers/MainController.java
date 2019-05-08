@@ -15,8 +15,8 @@ public class MainController {
 
     public static void showScene(Button button, String nameScene) throws IOException {
 
-        Stage primaryStage = new Stage();
-        button.getScene().getWindow().hide();
+        Stage primaryStage = (Stage) button.getScene().getWindow();
+        primaryStage.close();
         Parent root = FXMLLoader.load(MainController.class.getResource(nameScene));
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

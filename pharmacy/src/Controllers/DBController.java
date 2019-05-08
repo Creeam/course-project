@@ -184,4 +184,25 @@ public class DBController {
         return medicaments;
     }
 
+    //получение КОНКРЕТНОГО медикамента
+    public Medicament getMedicament(String id){
+        String name = "", country = "", quantity = "", price = "";
+        query = "SELECT * FROM " + Const.MEDICAMENT_TABLE + " WHERE id = '" + id +"'";
+        try {
+            statement = dbConnection.createStatement();
+            resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()){
+                name = resultSet.getString(2);
+                country = resultSet.getString(3);
+                quantity = resultSet.getString(4);
+                price = resultSet.getString(5);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return new Medicament(id, name, country, quantity, price);
+    }
+
 }

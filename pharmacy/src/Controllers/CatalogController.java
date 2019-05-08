@@ -1,5 +1,6 @@
 package Controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -48,7 +49,11 @@ public class CatalogController {
         initData();
 
         buyButton.setOnAction(event -> {
-
+            try {
+                MainController.showModalScene(event, "/samples/shoppingBar.fxml");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
 
     }

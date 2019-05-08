@@ -29,7 +29,7 @@ public class Controller {
     private Button signInAdminButton;
 
     @FXML
-    private TextField login_field;
+    public TextField login_field;
 
     @FXML
     private PasswordField password_field;
