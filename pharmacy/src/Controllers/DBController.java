@@ -6,8 +6,11 @@ import Obgect.Const;
 import Obgect.Couriers;
 import Obgect.Medicament;
 import Obgect.User;
+import javafx.scene.control.TextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
+import javax.xml.soap.Text;
 
 public class DBController {
 
@@ -37,7 +40,7 @@ public class DBController {
     //получение списка курьеров
     public ObservableList<Couriers> getCouriers(){
         query = "SELECT * FROM " + Const.COURIERS_TABLE;
-        String id = "", name = "", surname = "", password = "";
+        String id, name, surname, password;
         ObservableList<Couriers> couriers = FXCollections.observableArrayList();
         try {
             statement = dbConnection.createStatement();
@@ -62,14 +65,12 @@ public class DBController {
         query = "INSERT INTO pharmacy." + Const.COURIERS_TABLE + " ("+ Const.COURIERS_NAME +", "+ Const.COURIERS_SURNAME +", "+
                 Const.COURIERS_PASSWORD +") VALUES ('" +couriers.getName()+ "', '" + couriers.getSurname() + "', '" +
                 couriers.getPassword() + "')";
-
         try {
             statement = dbConnection.createStatement();
             statement.executeUpdate(query);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
 
@@ -88,7 +89,7 @@ public class DBController {
     //получение пользователя для входа в программу
     public User getUserForSignIn(String login, String password) {
 
-        String name = "", surname = "", phone = "", card = "", city = "", street = "", house = "";
+        String id = "", name = "", surname = "", phone = "", card = "", city = "", street = "", house = "", purchase = "";
         query = "SELECT * FROM " + Const.USER_TABLE + " WHERE " +
                 Const.USERS_LOGIN + " = '" + login + "' AND " + Const.USERS_PASSWORD + " = '" + password + "'";
 
@@ -97,6 +98,7 @@ public class DBController {
             resultSet = statement.executeQuery(query);
 
             while (resultSet.next()){
+                id = resultSet.getString(1);
                 name = resultSet.getString(2);
                 surname = resultSet.getString(3);
                 phone = resultSet.getString(4);
@@ -106,25 +108,25 @@ public class DBController {
                 city = resultSet.getString(8);
                 street = resultSet.getString(9);
                 house = resultSet.getString(10);
+                purchase = resultSet.getString(11);
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return new User(name, surname, phone, card, login, password, city, street, house);
+        return new User(id, name, surname, phone, card, login, password, city, street, house, purchase);
     }
 
 
     //получение списка пользователей
-    public ObservableList<User> getUser(){
+    public ObservableList<User> getUsers(){
         query = "SELECT * FROM " + Const.USER_TABLE;
-        String name, surname, phone, card, login, password, city, street, house;
+        String id, name, surname, phone, card, login, password, city, street, house, purchase;
         ObservableList<User> users = FXCollections.observableArrayList();
         try {
             statement = dbConnection.createStatement();
             resultSet = statement.executeQuery(query);
-
             while (resultSet.next()){
+                id = resultSet.getString(1);
                 name = resultSet.getString(2);
                 surname = resultSet.getString(3);
                 phone = resultSet.getString(4);
@@ -134,8 +136,8 @@ public class DBController {
                 city = resultSet.getString(8);
                 street = resultSet.getString(9);
                 house = resultSet.getString(10);
-                users.add(new User(name, surname, phone, card, login, password, city, street, house));
-
+                purchase = resultSet.getString(11);
+                users.add(new User(id, name, surname, phone, card, login, password, city, street, house, purchase));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -149,15 +151,43 @@ public class DBController {
         query = "INSERT INTO " + Const.USER_TABLE + "(" + Const.USERS_NAME + "," +
                 Const.USERS_SURNAME + "," + Const.USER_PHONE + "," + Const.USER_CARD + "," +
                 Const.USERS_LOGIN + "," + Const.USERS_PASSWORD + "," + Const.USERS_CITY + "," +
-                Const.USERS_STREET + "," + Const.USERS_HOUSE + ")" + "VALUES('" + user.getName() + "', '" + user.getSurname() +
+                Const.USERS_STREET + "," + Const.USERS_HOUSE + "," + Const.USERS_PURCHASES + ")" + "VALUES('" + user.getName() + "', '" + user.getSurname() +
                 "' , '" + user.getPhone()+ "', '" + user.getCard() + "', '" + user.getLogin() + "', '" + user.getPassword() + "', '" +
-                user.getCity() + "', '" + user.getStreet() + "', '" + user.getHouse() + "')";
+                user.getCity() + "', '" + user.getStreet() + "', '" + user.getHouse() + "', '0')";
         try {
             statement = dbConnection.createStatement();
             statement.executeUpdate(query);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    //получение скидки пользователя
+    public int getDiscount(String userLogin){
+        int purchase = 0;
+        int discount = 0;
+        query = "SELECT " + Const.USERS_PURCHASES + " FROM pharmacy." + Const.USER_TABLE +
+                " WHERE " + Const.USERS_LOGIN + " = '" + userLogin + "'";
+        try {
+            statement = dbConnection.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                purchase = resultSet.getInt(1);
+            }
+            if (purchase < 5)
+                discount = 0;
+            else if (purchase < 10)
+                discount = 5;
+            else if (purchase < 15)
+                discount = 10;
+            else if (purchase < 30)
+                discount = 15;
+            else
+                discount = 30;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return discount;
     }
 
 
@@ -169,7 +199,6 @@ public class DBController {
         try {
             statement = dbConnection.createStatement();
             resultSet = statement.executeQuery(query);
-
             while (resultSet.next()){
                 id = resultSet.getString(1);
                 name = resultSet.getString(2);
@@ -191,7 +220,6 @@ public class DBController {
         try {
             statement = dbConnection.createStatement();
             resultSet = statement.executeQuery(query);
-
             while (resultSet.next()){
                 name = resultSet.getString(2);
                 country = resultSet.getString(3);

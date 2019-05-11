@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class SignUpController {
 
@@ -54,11 +55,8 @@ public class SignUpController {
     void initialize() {
         signUpButton.setOnAction(event -> {
             signUpNewUser();
-            try {
-                MainController.showScene(signUpButton, "/samples/sample.fxml");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            Stage primaryStage = (Stage) signUpButton.getScene().getWindow();
+            primaryStage.close();
         });
     }
 
@@ -79,8 +77,9 @@ public class SignUpController {
         String city = city_field.getText();
         String street = street_field.getText();
         String house = house_field.getText();
+        String purchases = "0";
 
-        User user = new User(name, surname, phone, card, login, password, city, street, house);
+        User user = new User(name, surname, phone, card, login, password, city, street, house, purchases);
 
         dbController.signUpUser(user);
     }

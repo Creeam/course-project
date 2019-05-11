@@ -6,10 +6,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CatalogController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #EDEDED;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CatalogController">
    <children>
-      <TableView fx:id="catalogTableView" layoutX="14.0" layoutY="14.0" prefHeight="373.0" prefWidth="377.0" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="209.0" AnchorPane.topAnchor="14.0">
+      <TableView fx:id="catalogTableView" layoutX="14.0" layoutY="14.0" prefHeight="373.0" prefWidth="377.0" style="-fx-background-color: #EDEDED;" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="209.0" AnchorPane.topAnchor="14.0">
         <columns>
           <TableColumn fx:id="idColumn" prefWidth="75.0" text="индекс" />
           <TableColumn fx:id="nameColumn" prefWidth="75.0" text="название" />
@@ -19,6 +18,11 @@
         </columns>
       </TableView>
       <Button fx:id="buyButton" layoutX="402.0" layoutY="14.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="164.0" style="-fx-background-color: #1560BD;" text="Купить препарат" textFill="WHITE" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="14.0">
+         <font>
+            <Font name="SansSerif Regular" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="updateButton" layoutX="427.0" layoutY="53.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="164.0" style="-fx-background-color: #1560BD;" text="Обновить каталог" textFill="WHITE" AnchorPane.rightAnchor="9.0">
          <font>
             <Font name="SansSerif Regular" size="12.0" />
          </font>

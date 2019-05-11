@@ -15,6 +15,7 @@ public class Const {
     public static final String USERS_CITY = "город";
     public static final String USERS_STREET = "улица";
     public static final String USERS_HOUSE = "дом";
+    public static final String USERS_PURCHASES = "число_покупок";
 
     //таблица курьеры
     public static final String COURIERS_TABLE = "курьеры";

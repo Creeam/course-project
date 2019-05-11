@@ -1,13 +1,12 @@
 package Obgect;
 
 public class User {
-    private String name, surname, phone, card, login, password, city, street, house;
-
-    public User () {}
+    private String id, name, surname, phone, card, login, password, city, street, house, purchase;
 
 
-    public User(String name, String surname, String phone, String card, String login,
-                String password, String city, String street, String house) {
+    public User(String id ,String name, String surname, String phone, String card, String login,
+                String password, String city, String street, String house, String purchase) {
+        this.id = id;
         this.name = name;
         this.surname = surname;
         this.phone = phone;
@@ -17,7 +16,25 @@ public class User {
         this.city = city;
         this.street = street;
         this.house = house;
+        this.purchase = purchase;
     }
+
+    public User(String name, String surname, String phone, String card, String login,
+                String password, String city, String street, String house, String purchase) {
+        this.name = name;
+        this.surname = surname;
+        this.phone = phone;
+        this.card = card;
+        this.login = login;
+        this.password = password;
+        this.city = city;
+        this.street = street;
+        this.house = house;
+        this.purchase = purchase;
+    }
+
+
+    public User () {}
 
     public String getName() {
         return name;
@@ -90,4 +107,9 @@ public class User {
     public void setHouse(String house) {
         this.house = house;
     }
+
+    public String getPurchase() { return purchase; }
+
+    public void setPurchase(String purchase) { this.purchase = purchase; }
+
 }

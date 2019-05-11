@@ -29,18 +29,19 @@ public class Controller {
     private Button signInAdminButton;
 
     @FXML
-    public TextField login_field;
+    private TextField login_field;
 
     @FXML
     private PasswordField password_field;
 
     private DBController dbController;
     private MainController controller;
+    private static String loginText;
 
     @FXML
     void initialize(){
         signInButton.setOnAction(event -> {
-            String loginText = login_field.getText().trim();
+            loginText = login_field.getText().trim();
             String loginPassword = password_field.getText().trim();
             if(!loginText.equals("") && !loginPassword.equals("")) {
                 try {
@@ -89,5 +90,9 @@ public class Controller {
         } else {
             return false;
         }
+    }
+
+    public String getLogin() {
+        return loginText;
     }
 }

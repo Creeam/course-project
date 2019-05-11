@@ -41,13 +41,15 @@ public class CatalogController {
     @FXML
     private Button buyButton;
 
+    @FXML
+    private Button updateButton;
+
     DBController dbController = new DBController();
 
     @FXML
     void initialize() throws SQLException {
         dbController.getDbConnection();
         initData();
-
         buyButton.setOnAction(event -> {
             try {
                 MainController.showModalScene(event, "/samples/shoppingBar.fxml");
@@ -56,9 +58,10 @@ public class CatalogController {
             }
         });
 
+        updateButton.setOnAction(event -> initData());
     }
 
-    private void initData() {
+    public void initData() {
         idColumn.setCellValueFactory(new PropertyValueFactory<Medicament, String>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<Medicament, String >("name"));
         countryColumn.setCellValueFactory(new PropertyValueFactory<Medicament, String>("country"));
