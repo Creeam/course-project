@@ -1,4 +1,4 @@
-package Obgect;
+package Obgects;
 
 public class Couriers {
     private String id, name, surname, password;

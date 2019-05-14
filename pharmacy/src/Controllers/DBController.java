@@ -2,15 +2,12 @@ package Controllers;
 
 import java.sql.*;
 
-import Obgect.Const;
-import Obgect.Couriers;
-import Obgect.Medicament;
-import Obgect.User;
-import javafx.scene.control.TextField;
+import Obgects.Const;
+import Obgects.Couriers;
+import Obgects.Medicament;
+import Obgects.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
-import javax.xml.soap.Text;
 
 public class DBController {
 

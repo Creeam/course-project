@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -7,34 +8,34 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="395.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SignUpController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="395.0" style="-fx-background-color: #EDEDED;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SignUpController">
    <children>
       <Label layoutX="141.0" layoutY="29.0" text="Регистрация">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="login_field" layoutX="15.0" layoutY="72.0" promptText="Логин">
+      <TextField fx:id="login_field" layoutX="15.0" layoutY="72.0" promptText="Логин" style="-fx-border-color: #000; -fx-border-radius: 5; -fx-background-color: #EDEDED;">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="password_field" layoutX="202.0" layoutY="72.0" promptText="Пароль">
+      <PasswordField fx:id="password_field" layoutX="202.0" layoutY="72.0" promptText="Пароль" style="-fx-border-color: #000; -fx-border-radius: 5; -fx-background-color: #EDEDED;">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </PasswordField>
-      <TextField fx:id="name_field" layoutX="15.0" layoutY="171.0" promptText="Имя">
+      <TextField fx:id="name_field" layoutX="15.0" layoutY="171.0" promptText="Имя" style="-fx-border-color: #000; -fx-border-radius: 5; -fx-background-color: #EDEDED;">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="surname_field" layoutX="15.0" layoutY="216.0" promptText="Фамилия">
+      <TextField fx:id="surname_field" layoutX="15.0" layoutY="216.0" promptText="Фамилия" style="-fx-border-color: #000; -fx-border-radius: 5; -fx-background-color: #EDEDED;">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="phone_field" layoutX="16.0" layoutY="261.0" promptText="Телефон">
+      <TextField fx:id="phone_field" layoutX="16.0" layoutY="261.0" promptText="Телефон" style="-fx-border-color: #000; -fx-border-radius: 5; -fx-background-color: #EDEDED;">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
@@ -44,7 +45,7 @@
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="card_field" layoutX="15.0" layoutY="306.0" promptText="Номер кредитной карты">
+      <TextField fx:id="card_field" layoutX="15.0" layoutY="306.0" promptText="Номер кредитной карты" style="-fx-border-color: #000; -fx-border-radius: 5; -fx-background-color: #EDEDED;">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
@@ -54,25 +55,28 @@
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="city_field" layoutX="202.0" layoutY="171.0" promptText="Город">
+      <TextField fx:id="city_field" layoutX="202.0" layoutY="171.0" promptText="Город" style="-fx-border-color: #000; -fx-border-radius: 5; -fx-background-color: #EDEDED;">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="street_field" layoutX="202.0" layoutY="216.0" promptText="Улица">
+      <TextField fx:id="street_field" layoutX="202.0" layoutY="216.0" promptText="Улица" style="-fx-border-color: #000; -fx-border-radius: 5; -fx-background-color: #EDEDED;">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="house_field" layoutX="203.0" layoutY="261.0" promptText="Дом">
+      <TextField fx:id="house_field" layoutX="203.0" layoutY="261.0" promptText="Дом" style="-fx-border-color: #000; -fx-border-radius: 5; -fx-background-color: #EDEDED;">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </TextField>
-      <Button fx:id="signUpButton" layoutX="202.0" layoutY="306.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="177.0" style="-fx-background-radius: 5px; -fx-background-color: #1560BD;" text="Зарегестрироваться" textFill="#f1f1f1">
+      <Button fx:id="signUpButton" defaultButton="true" layoutX="202.0" layoutY="305.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="177.0" style="-fx-background-radius: 5px; -fx-background-color: #1560BD;" text="Зарегестрироваться" textFill="#f1f1f1">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
    </children>
 </AnchorPane>

@@ -1,4 +1,4 @@
-package Obgect;
+package Obgects;
 
 public class Const {
 
@@ -31,4 +31,14 @@ public class Const {
     public static final String MEDICAMENT_COUNTRY = "страна";
     public static final String MEDICAMENT_QUANTITY = "колличество";
     public static final String MEDICAMENT_PRICE = "цена(шт.)";
+
+    //таблица заказов
+    public static final String ORDER_TABLE = "заказы";
+    public static final String ORDER_ID = "id";
+    public static final String ORDER_ID_USER = "id_покупателя";
+    public static final String ORDER_ID_MEDICAMENT = "id_товара";
+    public static final String ORDER_MEDICAMENT_QUANTITY = "кол-во";
+    public static final String ORDER_PRICE = "цена";
+
+
 }

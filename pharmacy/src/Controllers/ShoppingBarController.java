@@ -4,10 +4,9 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import Obgect.Const;
-import Obgect.Medicament;
+import Obgects.Const;
+import Obgects.Medicament;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -112,4 +111,9 @@ public class ShoppingBarController {
             e.printStackTrace();
         }
     }
+
+    private void orderRegistration(){
+        String query = "";
+    }
+
 }

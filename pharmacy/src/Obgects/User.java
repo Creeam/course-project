@@ -1,4 +1,4 @@
-package Obgect;
+package Obgects;
 
 public class User {
     private String id, name, surname, phone, card, login, password, city, street, house, purchase;
