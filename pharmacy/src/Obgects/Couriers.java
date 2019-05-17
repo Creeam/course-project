@@ -1,7 +1,7 @@
 package Obgects;
 
 public class Couriers {
-    private String id, name, surname, password;
+    private String id, name, surname, password, orders;
 
     public Couriers(String id, String name, String surname, String password) {
         this.id = id;
@@ -50,4 +50,11 @@ public class Couriers {
         this.password = password;
     }
 
+    public String getOrders() {
+        return orders;
+    }
+
+    public void setOrders(String orders) {
+        this.orders = orders;
+    }
 }

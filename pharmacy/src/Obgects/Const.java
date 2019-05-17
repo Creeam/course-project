@@ -23,6 +23,7 @@ public class Const {
     public static final String COURIERS_NAME = "имя";
     public static final String COURIERS_SURNAME = "фамилия";
     public static final String COURIERS_PASSWORD = "пароль";
+    public static final String COURIERS_ORDERS = "заказы";
 
     //таблица медикоментов
     public static final String MEDICAMENT_TABLE = "каталог";
@@ -35,9 +36,9 @@ public class Const {
     //таблица заказов
     public static final String ORDER_TABLE = "заказы";
     public static final String ORDER_ID = "id";
-    public static final String ORDER_ID_USER = "id_покупателя";
+    public static final String ORDER_LOGIN_USER = "логин_покупателя";
     public static final String ORDER_ID_MEDICAMENT = "id_товара";
-    public static final String ORDER_MEDICAMENT_QUANTITY = "кол-во";
+    public static final String ORDER_MEDICAMENT_QUANTITY = "количество";
     public static final String ORDER_PRICE = "цена";
 
 

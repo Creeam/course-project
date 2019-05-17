@@ -30,6 +30,9 @@ public class Controller {
     private Button signInAdminButton;
 
     @FXML
+    private Button signInCourierButton;
+
+    @FXML
     private TextField login_field;
 
     @FXML
@@ -76,6 +79,14 @@ public class Controller {
 
 
         signInAdminButton.setOnAction(event -> {
+            try {
+                MainController.showModalScene(event, "/samples/signInAdmin.fxml");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        signInCourierButton.setOnAction(event -> {
             try {
                 MainController.showModalScene(event, "/samples/signInAdmin.fxml");
             } catch (IOException e) {

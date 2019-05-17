@@ -145,7 +145,7 @@ public class DBController {
 
     // Добавление пользователя
     public void signUpUser(User user){
-        query = "INSERT INTO " + Const.USER_TABLE + "(" + Const.USERS_NAME + "," +
+        query = "INSERT INTO " + Const.USER_TABLE + " (" + Const.USERS_NAME + "," +
                 Const.USERS_SURNAME + "," + Const.USER_PHONE + "," + Const.USER_CARD + "," +
                 Const.USERS_LOGIN + "," + Const.USERS_PASSWORD + "," + Const.USERS_CITY + "," +
                 Const.USERS_STREET + "," + Const.USERS_HOUSE + "," + Const.USERS_PURCHASES + ")" + "VALUES('" + user.getName() + "', '" + user.getSurname() +

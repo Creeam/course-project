@@ -40,6 +40,7 @@ public class ShoppingBarController {
     DBController dbController = new DBController();
     Controller controller = new Controller();
     String login;
+    int quantity;
 
 
     @FXML
@@ -56,7 +57,12 @@ public class ShoppingBarController {
         buyButton.setOnAction(event -> {
             Stage primaryStage = (Stage) buyButton.getScene().getWindow();
             checkout(login);
-            primaryStage.close();
+            if (totalPriceField.getText().equals("") || totalPriceField.getText().equals("0.0")){
+                System.out.println("1234");
+            } else {
+                orderRegistration();
+                primaryStage.close();
+            }
         });
 
     }
@@ -65,7 +71,7 @@ public class ShoppingBarController {
         double total = 0;
         Medicament medicament = dbController.getMedicament(idMedicament.getText());
         double price = Double.parseDouble(medicament.getPrice());
-        int quantity = Integer.parseInt(medicament.getQuantity());
+        quantity = Integer.parseInt(medicament.getQuantity());
         if(insertQuantity > quantity){
             System.out.println("insert > quantity");
         } else {
@@ -113,7 +119,16 @@ public class ShoppingBarController {
     }
 
     private void orderRegistration(){
-        String query = "";
+        String query = "INSERT pharmacy." + Const.ORDER_TABLE + " (" + Const.ORDER_LOGIN_USER + ", " +
+                Const.ORDER_ID_MEDICAMENT + ", " + Const.ORDER_MEDICAMENT_QUANTITY + ", " +
+                Const.ORDER_PRICE + ") VALUES ('" + login + "', '" + idMedicament.getText() + "', '" +
+                quantityMedicament.getText() + "', '" + totalPrice(Integer.parseInt(quantityMedicament.getText().trim())) + "')";
+        try {
+            dbController.statement = dbController.dbConnection.createStatement();
+            dbController.statement.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }
