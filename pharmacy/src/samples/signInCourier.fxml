@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="311.0" prefWidth="287.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SignInCourierController">
+   <children>
+      <TextField fx:id="nameField" layoutX="43.0" layoutY="105.0" prefHeight="25.0" prefWidth="202.0" promptText="Имя" />
+      <TextField fx:id="surnameField" layoutX="43.0" layoutY="152.0" prefHeight="25.0" prefWidth="202.0" promptText="Фамилия" />
+      <PasswordField fx:id="passwordField" layoutX="43.0" layoutY="200.0" prefHeight="25.0" prefWidth="202.0" promptText="Пароль" />
+      <Button fx:id="signInButton" defaultButton="true" layoutX="79.0" layoutY="250.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" text="Войти" />
+      <Label layoutX="47.0" layoutY="43.0" text="Вход в аккаунт курьера">
+         <font>
+            <Font name="SansSerif Regular" size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

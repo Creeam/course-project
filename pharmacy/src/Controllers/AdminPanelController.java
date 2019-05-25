@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-
 import Obgects.Couriers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -52,7 +51,7 @@ public class AdminPanelController {
 
         addButton.setOnAction(event -> {
             try {
-                MainController.showModalScene(event, "/samples/addDialogWindow.fxml");
+                MainController.showModalScene(event, "/Samples/addDialogWindow.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -60,7 +59,7 @@ public class AdminPanelController {
 
         removeButton.setOnAction(event -> {
             try {
-                MainController.showModalScene(event, "/samples/removeDialogWindow.fxml");
+                MainController.showModalScene(event, "/Samples/removeDialogWindow.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
             }

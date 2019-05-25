@@ -1,4 +1,3 @@
-import Controllers.DBController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,7 +8,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("samples/sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Samples/sample.fxml"));
         primaryStage.setTitle("Онлайн-аптека");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

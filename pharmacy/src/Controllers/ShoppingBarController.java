@@ -3,7 +3,6 @@ package Controllers;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-
 import Obgects.Const;
 import Obgects.Medicament;
 import javafx.fxml.FXML;

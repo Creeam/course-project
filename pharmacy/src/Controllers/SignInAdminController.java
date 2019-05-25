@@ -32,7 +32,7 @@ public class SignInAdminController {
             String password = adminPassworField.getText().trim();
             if (signIn(login, password)){
                 try {
-                    MainController.showScene(sigInButton, "/samples/adminPanel.fxml");
+                    MainController.showScene(sigInButton, "/Samples/adminPanel.fxml");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

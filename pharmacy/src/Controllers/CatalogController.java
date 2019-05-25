@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-
 import Obgects.Medicament;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -48,11 +47,12 @@ public class CatalogController {
 
     @FXML
     void initialize() throws SQLException {
+
         dbController.getDbConnection();
         initData();
         buyButton.setOnAction(event -> {
             try {
-                MainController.showModalScene(event, "/samples/shoppingBar.fxml");
+                MainController.showModalScene(event, "/Samples/shoppingBar.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
             }

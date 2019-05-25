@@ -1,7 +1,8 @@
 package Controllers;
 
 import java.sql.*;
-
+import java.util.ArrayList;
+import java.util.HashMap;
 import Obgects.Const;
 import Obgects.Couriers;
 import Obgects.Medicament;
@@ -57,6 +58,27 @@ public class DBController {
     }
 
 
+    //получение конкретного курьера
+    public Couriers getCourier(){
+        query = "SELECT * FROM " + Const.COURIERS_TABLE + "WHERE ";
+        String id = "", name = "", surname = "", password = "";
+        try {
+            statement = dbConnection.createStatement();
+            resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()){
+                id = resultSet.getString(1);
+                name = resultSet.getString(2);
+                surname = resultSet.getString(3);
+                password = resultSet.getString(4);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return new Couriers(id, name, surname, password);
+    }
+
+
     //добавление курьера
     public void addCouriers(Couriers couriers){
         query = "INSERT INTO pharmacy." + Const.COURIERS_TABLE + " ("+ Const.COURIERS_NAME +", "+ Const.COURIERS_SURNAME +", "+
@@ -89,6 +111,37 @@ public class DBController {
         String id = "", name = "", surname = "", phone = "", card = "", city = "", street = "", house = "", purchase = "";
         query = "SELECT * FROM " + Const.USER_TABLE + " WHERE " +
                 Const.USERS_LOGIN + " = '" + login + "' AND " + Const.USERS_PASSWORD + " = '" + password + "'";
+
+        try {
+            statement = dbConnection.createStatement();
+            resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()){
+                id = resultSet.getString(1);
+                name = resultSet.getString(2);
+                surname = resultSet.getString(3);
+                phone = resultSet.getString(4);
+                card = resultSet.getString(5);
+                login = resultSet.getString(6);
+                password = resultSet.getString(7);
+                city = resultSet.getString(8);
+                street = resultSet.getString(9);
+                house = resultSet.getString(10);
+                purchase = resultSet.getString(11);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return new User(id, name, surname, phone, card, login, password, city, street, house, purchase);
+    }
+
+    //получение пользователя
+    public User getUser(String nameCourier, String surnameCourier) {
+
+        String id = "", name = "", surname = "", phone = "", card = "", login = "", password = "",
+                city = "", street = "", house = "", purchase = "";
+        query = "select * from пользователи where логин = (select заказы from курьеры where имя = '" +
+                nameCourier + "' and фамилия = '" + surnameCourier + "')";
 
         try {
             statement = dbConnection.createStatement();
@@ -223,11 +276,87 @@ public class DBController {
                 quantity = resultSet.getString(4);
                 price = resultSet.getString(5);
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return new Medicament(id, name, country, quantity, price);
+    }
+
+    public ArrayList<HashMap> order (ArrayList<HashMap> map) {
+        String login = getUser(SignInCourierController.getCourierName(), SignInCourierController.getCourierSurname()).getLogin();
+        query = "SELECT * FROM "+ Const.ORDER_TABLE +" WHERE логин_покупателя = '"+ login +"'";
+        HashMap<String, String> temp = new HashMap<>();
+        try {
+            statement = dbConnection.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                temp.put("Имя", getUserName(resultSet.getString(2)));
+                temp.put("Фамилия", getUserSurname(resultSet.getString(2)));
+                temp.put("Препарат", getItem(resultSet.getInt(3)));
+                temp.put("Количество", resultSet.getString(4));
+                temp.put("Цена", resultSet.getString(5));
+                map.add(new HashMap(temp));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return map;
+    }
+
+    public String getUserName(String login) {
+        String name = "";
+        Statement statement;
+        ResultSet resultSet;
+
+        query = "SELECT " + Const.USERS_NAME + " FROM " + Const.USER_TABLE + " WHERE логин = '" + login +"'";
+        try {
+            statement = dbConnection.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                name = resultSet.getString(1);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return name;
+    }
+
+    public String getUserSurname(String login) {
+        String surname = "";
+        Statement statement;
+        ResultSet resultSet;
+
+        query = "SELECT " + Const.USERS_SURNAME + " FROM " + Const.USER_TABLE + " WHERE логин = '" + login +"'";
+        try {
+            statement = dbConnection.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                surname = resultSet.getString(1);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return surname;
+    }
+
+    public String getItem(int id) {
+        String item = "";
+        Statement statement;
+        ResultSet resultSet;
+        query = "SELECT " + Const.MEDICAMENT_NAME + " FROM " + Const.MEDICAMENT_TABLE + " WHERE id = '" + id +"'";
+        try {
+            statement = dbConnection.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                item = resultSet.getString(1);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return item;
     }
 
 }

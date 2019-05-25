@@ -4,13 +4,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-
 import Obgects.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import java.awt.event.*;
 
 public class Controller {
 
@@ -57,7 +55,7 @@ public class Controller {
                 if (signIn(loginText, loginPassword)){
                     controller = new MainController();
                     try {
-                        controller.showScene(signInButton, "/samples/catalog.fxml");
+                        controller.showScene(signInButton, "/Samples/catalog.fxml");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -71,7 +69,7 @@ public class Controller {
 
         signUpButton.setOnAction(event -> {
             try {
-                MainController.showModalScene(event, "/samples/signUp.fxml");
+                MainController.showModalScene(event, "/Samples/signUp.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -80,7 +78,7 @@ public class Controller {
 
         signInAdminButton.setOnAction(event -> {
             try {
-                MainController.showModalScene(event, "/samples/signInAdmin.fxml");
+                MainController.showModalScene(event, "/Samples/signInAdmin.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -88,7 +86,7 @@ public class Controller {
 
         signInCourierButton.setOnAction(event -> {
             try {
-                MainController.showModalScene(event, "/samples/signInAdmin.fxml");
+                MainController.showModalScene(event, "/Samples/signInCourier.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
             }

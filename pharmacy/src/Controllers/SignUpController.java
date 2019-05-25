@@ -1,15 +1,16 @@
 package Controllers;
 
+
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-
 import Obgects.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
 
 public class SignUpController {
 
