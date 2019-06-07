@@ -1,6 +1,7 @@
 package Controllers;
 
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -53,10 +54,32 @@ public class SignUpController {
     @FXML
 
     void initialize() {
+        System.out.println("Check");
+
         signUpButton.setOnAction(event -> {
-            signUpNewUser();
-            Stage primaryStage = (Stage) signUpButton.getScene().getWindow();
-            primaryStage.close();
+            if(name_field.getText().equals("") || surname_field.getText().equals("") ||
+            login_field.getText().equals("") || password_field.getText().equals("") ||
+            phone_field.getText().equals("") || card_field.getText().equals("") ||
+            house_field.getText().equals("") || street_field.getText().equals("") ||
+            city_field.getText().equals(""))  {
+                try {
+                    MainController.showModalScene(event, "/Samples/Error.fxml");
+                    System.out.println("First try");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else if (!phone_field.getText().matches("[+0-9]\\d{12}") ||
+                        !card_field.getText().matches("[0-9]\\d{15}") ) {
+                try {
+                    MainController.showModalScene(event, "/Samples/Error.fxml");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                signUpNewUser();
+                Stage primaryStage = (Stage) signUpButton.getScene().getWindow();
+                primaryStage.close();
+            }
         });
     }
 
@@ -83,4 +106,5 @@ public class SignUpController {
 
         dbController.signUpUser(user);
     }
+
 }

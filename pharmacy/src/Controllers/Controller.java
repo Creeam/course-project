@@ -62,8 +62,13 @@ public class Controller {
                 }
 
             }
-            else
-                System.out.println("Error");
+            else {
+                try {
+                    MainController.showModalScene(event, "/Samples/Error.fxml");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         });
 
 

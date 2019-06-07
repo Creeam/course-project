@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -10,9 +11,18 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="348.0" prefWidth="242.0" style="-fx-background-color: #EDEDED;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Controller">
    <children>
-      <Button fx:id="signInButton" defaultButton="true" layoutX="13.0" layoutY="208.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="103.0" style="-fx-background-radius: 5px; -fx-background-color: #1560BD;" text="Войти" textFill="#f1f1f1" />
-      <Button fx:id="signUpButton" layoutX="127.0" layoutY="208.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="103.0" style="-fx-border-radius: 5px; -fx-border-color: #1560BD; -fx-background-color: #EDEDED; -fx-border-width: 1;" text="Регистрация" textFill="#1560bd" />
-      <Button fx:id="signInAdminButton" layoutX="13.0" layoutY="254.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="218.0" style="-fx-background-color: #859FDB; -fx-background-radius: 5px;" text="Войти как администратор" textFill="#f1f1f1" />
+      <Button fx:id="signInButton" defaultButton="true" layoutX="13.0" layoutY="208.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="103.0" style="-fx-background-radius: 5px; -fx-background-color: #1560BD;" text="Войти" textFill="#f1f1f1">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="signUpButton" layoutX="127.0" layoutY="208.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="103.0" style="-fx-border-radius: 5px; -fx-border-color: #1560BD; -fx-background-color: #EDEDED; -fx-border-width: 1;" text="Регистрация" textFill="#1560bd">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="signInAdminButton" layoutX="13.0" layoutY="254.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="218.0" style="-fx-background-color: #859FDB; -fx-background-radius: 5px;" text="Войти как администратор" textFill="#f1f1f1">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
       <Label layoutX="33.0" layoutY="14.0" text="Вход в приложение" textAlignment="CENTER">
          <font>
             <Font name="Arial Bold" size="18.0" />
@@ -33,6 +43,9 @@
             <Font size="14.0" />
          </font>
       </PasswordField>
-      <Button fx:id="signInCourierButton" layoutX="13.0" layoutY="302.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="218.0" style="-fx-background-color: #859FDB; -fx-background-radius: 5px;" text="Войти как курьер" textFill="#f1f1f1" />
+      <Button fx:id="signInCourierButton" layoutX="13.0" layoutY="302.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="218.0" style="-fx-background-color: #859FDB; -fx-background-radius: 5px;" text="Войти как курьер" textFill="#f1f1f1">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
    </children>
 </AnchorPane>

@@ -1,11 +1,10 @@
 package Controllers;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -60,8 +59,14 @@ public class CourierController {
                 "\nдом " +  dbController.getUser(courier.getCourierName(), courier.getCourierSurname()).getHouse();
         adresText.setText(adres);
         outputOrder();
+
+
         deleteOrderButton.setOnAction(event -> {
-            checkStatement();
+            try {
+                checkStatement();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
     }
 
@@ -78,15 +83,21 @@ public class CourierController {
         textOrder.setText(orders);
     }
 
-    private void checkStatement(){
+    private void checkStatement() throws IOException {
+        Date date = new Date();
         String check = "---------- " + nameUser + " " + surnameUser + " ----------" +
-                        "\n\n" + orders +
-                        "------------------------------";
+                "\n\n" + orders + date + "---------\n\n\n";
         System.out.println(check);
-        try(FileWriter fileWriter = new FileWriter(nameUser + "_" + surnameUser + ".txt")){
-            fileWriter.write(check);
-        } catch (IOException e) {
-            e.printStackTrace();
+        String fileName = nameUser + "_" + surnameUser + ".txt";
+        File file = new File(fileName);
+        if (file.exists()) {
+            FileReader fileReader = new FileReader(fileName);
+            char[] buf = new char[10000];
+            fileReader.read(buf);
+            for (char c : buf)
+                check += c;
         }
+        FileWriter fileWriter = new FileWriter(fileName);
+        fileWriter.write(check);
     }
 }
