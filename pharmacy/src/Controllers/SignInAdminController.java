@@ -36,6 +36,12 @@ public class SignInAdminController {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            } else {
+                try {
+                    MainController.showModalScene(event, "/Samples/Error.fxml");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 

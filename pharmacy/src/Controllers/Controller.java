@@ -59,10 +59,14 @@ public class Controller {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                } else {
+                    try {
+                        MainController.showModalScene(event, "/Samples/Error.fxml");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
-
-            }
-            else {
+            } else {
                 try {
                     MainController.showModalScene(event, "/Samples/Error.fxml");
                 } catch (IOException e) {
@@ -99,8 +103,9 @@ public class Controller {
     }
 
     public boolean signIn(String login, String password){
-        User user = dbController.getUserForSignIn(login, password);
-        if(user.getLogin().equals(login) && user.getPassword().equals(password)){
+        User users = dbController.getUserForSignIn(login, password);
+        if(users.getLogin().equals(login) && users.getPassword().equals(password)){
+            System.out.println(users.getLogin() + " " + users.getPassword());
             return true;
         } else {
             return false;

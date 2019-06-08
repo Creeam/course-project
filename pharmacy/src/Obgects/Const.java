@@ -40,6 +40,7 @@ public class Const {
     public static final String ORDER_ID_MEDICAMENT = "id_товара";
     public static final String ORDER_MEDICAMENT_QUANTITY = "количество";
     public static final String ORDER_PRICE = "цена";
+    public static final String ORDER_ID_COURIERS = "id_курьера";
 
 
 }

@@ -32,9 +32,7 @@ public class MainController {
         primaryStage.initModality(Modality.WINDOW_MODAL);
         primaryStage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow());
         primaryStage.show();
-        primaryStage.setOnCloseRequest(event -> {
-            System.out.println("window was close");
-        });
+        primaryStage.setOnCloseRequest(event -> System.out.println("window was close"));
     }
 
     public static void showScene(Button button, String nameScene, int width, int height) {

@@ -1,5 +1,6 @@
 package Controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -52,14 +53,22 @@ public class ShoppingBarController {
             totalPriceField.clear();
             totalPriceField.setText(String.valueOf(totalPrice(Integer.parseInt(quantityMedicament.getText().trim()))));
         });
-
         buyButton.setOnAction(event -> {
             Stage primaryStage = (Stage) buyButton.getScene().getWindow();
             checkout(login);
             if (totalPriceField.getText().equals("") || totalPriceField.getText().equals("0.0")){
-                System.out.println("1234");
+                try {
+                    MainController.showModalScene(event, "/Samples/Error.fxml");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             } else {
                 orderRegistration();
+                try {
+                    distribution();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
                 primaryStage.close();
             }
         });
@@ -128,6 +137,23 @@ public class ShoppingBarController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    private void distribution() throws SQLException {
+        String idCourier = "";
+        String userLogin = "";
+        String query = "select id from курьеры where курьеры.заказы is null;";
+        dbController.statement = dbController.dbConnection.createStatement();
+        dbController.resultSet = dbController.statement.executeQuery(query);
+        while (dbController.resultSet.next()){
+            idCourier = dbController.resultSet.getString(1);
+        }
+        System.out.println(idCourier);
+        System.out.println(userLogin);
+        query = " update курьеры set заказы = '" + login + "' where id = '" + idCourier +"'";
+        dbController.statement.executeUpdate(query);
+        query = "update заказы set заказы.id_курьера = '" + idCourier +"' where заказы.логин_покупателя = '" + login +"'";
+        dbController.statement.executeUpdate(query);
     }
 
 }

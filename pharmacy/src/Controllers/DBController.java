@@ -115,7 +115,6 @@ public class DBController {
         try {
             statement = dbConnection.createStatement();
             resultSet = statement.executeQuery(query);
-
             while (resultSet.next()){
                 id = resultSet.getString(1);
                 name = resultSet.getString(2);
@@ -128,11 +127,12 @@ public class DBController {
                 street = resultSet.getString(9);
                 house = resultSet.getString(10);
                 purchase = resultSet.getString(11);
+                return new User(id, name, surname, phone, card, login, password, city, street, house, purchase);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return new User(id, name, surname, phone, card, login, password, city, street, house, purchase);
+        return new User("", "", "", "", "", "", "", "", "", "", "");
     }
 
     //получение пользователя

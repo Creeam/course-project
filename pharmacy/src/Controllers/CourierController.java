@@ -60,7 +60,6 @@ public class CourierController {
         adresText.setText(adres);
         outputOrder();
 
-
         deleteOrderButton.setOnAction(event -> {
             try {
                 checkStatement();
