@@ -141,7 +141,6 @@ public class ShoppingBarController {
 
     private void distribution() throws SQLException {
         String idCourier = "";
-        String userLogin = "";
         String query = "select id from курьеры where курьеры.заказы is null;";
         dbController.statement = dbController.dbConnection.createStatement();
         dbController.resultSet = dbController.statement.executeQuery(query);
@@ -149,7 +148,7 @@ public class ShoppingBarController {
             idCourier = dbController.resultSet.getString(1);
         }
         System.out.println(idCourier);
-        System.out.println(userLogin);
+        System.out.println(login);
         query = " update курьеры set заказы = '" + login + "' where id = '" + idCourier +"'";
         dbController.statement.executeUpdate(query);
         query = "update заказы set заказы.id_курьера = '" + idCourier +"' where заказы.логин_покупателя = '" + login +"'";

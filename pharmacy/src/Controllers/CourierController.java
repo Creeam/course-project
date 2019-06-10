@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+
+import Obgects.Const;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 import javafx.scene.control.TextField;
@@ -41,29 +43,32 @@ public class CourierController {
     private static String orders;
     private static String nameUser;
     private static String surnameUser;
+    private static String nameCourier;
+    private static String surnameCourier;
+    private static String passwordCourier;
 
     @FXML
-    void initialize() {
-        try {
-            dbController.getDbConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        String login = dbController.getUser(courier.getCourierName(), courier.getCourierSurname()).getLogin();
+    void initialize() throws SQLException {
+        nameCourier = courier.getCourierName();
+        surnameCourier = courier.getCourierSurname();
+        passwordCourier = courier.getCourierPassword();
+        dbController.getDbConnection();
+        String login = dbController.getUser(nameCourier, surnameCourier).getLogin();
         nameUser = dbController.getUserName(login);
         nameField.setText(nameUser);
         surnameUser = dbController.getUserSurname(login);
         surnameField.setText(surnameUser);
-        adres = "город " + dbController.getUser(courier.getCourierName(), courier.getCourierSurname()).getCity() +
-                "\nул. " + dbController.getUser(courier.getCourierName(), courier.getCourierSurname()).getStreet() +
-                "\nдом " +  dbController.getUser(courier.getCourierName(), courier.getCourierSurname()).getHouse();
+        adres = "город " + dbController.getUser(nameCourier, surnameCourier).getCity() +
+                "\nул. " + dbController.getUser(nameCourier, surnameCourier).getStreet() +
+                "\nдом " +  dbController.getUser(nameCourier, surnameCourier).getHouse();
         adresText.setText(adres);
         outputOrder();
 
         deleteOrderButton.setOnAction(event -> {
             try {
                 checkStatement();
-            } catch (IOException e) {
+                deleteOrder();
+            } catch (IOException | SQLException e) {
                 e.printStackTrace();
             }
         });
@@ -98,5 +103,26 @@ public class CourierController {
         }
         FileWriter fileWriter = new FileWriter(fileName);
         fileWriter.write(check);
+    }
+
+    private void deleteOrder() throws SQLException {
+        String id = "";
+        String query = "select id from pharmacy.курьеры where имя = '" + nameCourier +
+                        "' and фамилия = '" + surnameCourier +
+                        "' and пароль = '" + passwordCourier +"'";
+        dbController.statement = dbController.dbConnection.createStatement();
+        dbController.resultSet = dbController.statement.executeQuery(query);
+
+        while (dbController.resultSet.next()){
+            id = dbController.resultSet.getString(1);
+        }
+        query = "DELETE FROM pharmacy." + Const.ORDER_TABLE + " WHERE " + Const.ORDER_ID_COURIERS + " = '" + id +"'";
+        dbController.statement.executeUpdate(query);
+        query = "UPDATE pharmacy.курьеры SET заказы = '' WHERE имя = 'Кирилл' and фамилия = 'Антонов' and пароль = '1234'";
+        dbController.statement.executeUpdate(query);
+        nameField.setText("");
+        surnameField.setText("");
+        adresText.setText("");
+        textOrder.setText("Заказ выполнен.");
     }
 }
