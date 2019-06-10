@@ -15,7 +15,6 @@ import java.io.IOException;
 public class MainController {
 
     public static void showScene(Button button, String nameScene) throws IOException {
-
         Stage primaryStage = (Stage) button.getScene().getWindow();
         primaryStage.close();
         Parent root = FXMLLoader.load(MainController.class.getResource(nameScene));
@@ -24,7 +23,6 @@ public class MainController {
     }
 
     public static void showModalScene(ActionEvent actionEvent, String nameScene) throws IOException {
-
         Stage primaryStage = new Stage();
         Parent root = FXMLLoader.load(MainController.class.getResource(nameScene));
         primaryStage.setResizable(false);
@@ -34,22 +32,4 @@ public class MainController {
         primaryStage.show();
         primaryStage.setOnCloseRequest(event -> System.out.println("window was close"));
     }
-
-    public static void showScene(Button button, String nameScene, int width, int height) {
-        button.getScene().getWindow().hide();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(MainController.class.getResource(nameScene));
-        try {
-            loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        Parent root = loader.getRoot();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root, width, height));
-
-        stage.showAndWait();
-    }
-
 }

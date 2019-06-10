@@ -1,9 +1,7 @@
 package Controllers;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 import Obgects.Const;
 import Obgects.Medicament;
 import javafx.fxml.FXML;
@@ -14,26 +12,15 @@ import javafx.stage.Stage;
 public class ShoppingBarController {
 
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
     private TextField idMedicament;
-
     @FXML
     private TextField quantityMedicament;
-
     @FXML
     private TextField totalPriceField;
-
     @FXML
     private TextField discountField;
-
     @FXML
     private Button buyButton;
-
     @FXML
     private Button paymentButton;
 
@@ -42,13 +29,11 @@ public class ShoppingBarController {
     String login;
     int quantity;
 
-
     @FXML
     void initialize() throws SQLException {
         login = controller.getLogin();
         dbController.getDbConnection();
         discountField.setText(String.valueOf(dbController.getDiscount(login)));
-
         paymentButton.setOnAction(event -> {
             totalPriceField.clear();
             totalPriceField.setText(String.valueOf(totalPrice(Integer.parseInt(quantityMedicament.getText().trim()))));
@@ -72,7 +57,6 @@ public class ShoppingBarController {
                 primaryStage.close();
             }
         });
-
     }
 
     private double totalPrice(int insertQuantity){
@@ -154,5 +138,4 @@ public class ShoppingBarController {
         query = "update заказы set заказы.id_курьера = '" + idCourier +"' where заказы.логин_покупателя = '" + login +"'";
         dbController.statement.executeUpdate(query);
     }
-
 }

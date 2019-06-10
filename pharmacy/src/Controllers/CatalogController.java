@@ -1,9 +1,7 @@
 package Controllers;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 import Obgects.Medicament;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -14,32 +12,19 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class CatalogController {
 
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
     private TableView<Medicament> catalogTableView;
-
     @FXML
     private TableColumn<Medicament, String> idColumn;
-
     @FXML
     private TableColumn<Medicament, String> nameColumn;
-
     @FXML
     private TableColumn<Medicament, String> countryColumn;
-
     @FXML
     private TableColumn<Medicament, String> quantityColumn;
-
     @FXML
     private TableColumn<Medicament, String> priceColumn;
-
     @FXML
     private Button buyButton;
-
     @FXML
     private Button updateButton;
 
@@ -47,7 +32,6 @@ public class CatalogController {
 
     @FXML
     void initialize() throws SQLException {
-
         dbController.getDbConnection();
         initData();
         buyButton.setOnAction(event -> {
@@ -57,7 +41,6 @@ public class CatalogController {
                 e.printStackTrace();
             }
         });
-
         updateButton.setOnAction(event -> initData());
     }
 

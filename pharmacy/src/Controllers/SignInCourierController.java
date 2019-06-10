@@ -1,9 +1,7 @@
 package Controllers;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -12,21 +10,11 @@ import javafx.scene.control.TextField;
 public class SignInCourierController {
 
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
     private TextField nameField;
-
     @FXML
     private TextField surnameField;
-
     @FXML
     private PasswordField passwordField;
-
-
     @FXML
     private Button signInButton;
 

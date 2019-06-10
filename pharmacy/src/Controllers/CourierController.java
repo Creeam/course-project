@@ -1,13 +1,10 @@
 package Controllers;
 
 import java.io.*;
-import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.ResourceBundle;
-
 import Obgects.Const;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
@@ -17,23 +14,13 @@ import javafx.scene.control.Button;
 public class CourierController {
 
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
     private TextField nameField;
-
     @FXML
     private TextField surnameField;
-
     @FXML
     private Text adresText;
-
     @FXML
     private Text textOrder;
-
     @FXML
     private Button deleteOrderButton;
 
@@ -63,7 +50,6 @@ public class CourierController {
                 "\nдом " +  dbController.getUser(nameCourier, surnameCourier).getHouse();
         adresText.setText(adres);
         outputOrder();
-
         deleteOrderButton.setOnAction(event -> {
             try {
                 checkStatement();
@@ -112,13 +98,13 @@ public class CourierController {
                         "' and пароль = '" + passwordCourier +"'";
         dbController.statement = dbController.dbConnection.createStatement();
         dbController.resultSet = dbController.statement.executeQuery(query);
-
         while (dbController.resultSet.next()){
             id = dbController.resultSet.getString(1);
         }
         query = "DELETE FROM pharmacy." + Const.ORDER_TABLE + " WHERE " + Const.ORDER_ID_COURIERS + " = '" + id +"'";
         dbController.statement.executeUpdate(query);
-        query = "UPDATE pharmacy.курьеры SET заказы = '' WHERE имя = 'Кирилл' and фамилия = 'Антонов' and пароль = '1234'";
+        query = "UPDATE pharmacy.курьеры SET заказы = null WHERE имя = '" + nameCourier+ "' and фамилия = '" + surnameCourier +
+                "' and пароль = '" + passwordCourier +"'";
         dbController.statement.executeUpdate(query);
         nameField.setText("");
         surnameField.setText("");

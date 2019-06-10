@@ -9,11 +9,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="201.0" prefWidth="222.0" style="-fx-background-color: #EDEDED;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SignInAdminController">
    <children>
-      <TextField fx:id="adminLoginFIeld" layoutX="23.0" layoutY="69.0" promptText="логин" style="-fx-background-color: #EDEDED; -fx-border-color: #000; -fx-border-radius: 5;">
+      <TextField fx:id="adminLoginField" layoutX="23.0" layoutY="69.0" promptText="логин" style="-fx-background-color: #EDEDED; -fx-border-color: #000; -fx-border-radius: 5;">
          <font>
             <Font name="Arial" size="14.0" />
          </font></TextField>
-      <PasswordField fx:id="adminPassworField" layoutX="23.0" layoutY="106.0" promptText="пароль" style="-fx-background-color: #EDEDED; -fx-border-color: #000; -fx-border-radius: 5;">
+      <PasswordField fx:id="adminPasswordField" layoutX="23.0" layoutY="106.0" promptText="пароль" style="-fx-background-color: #EDEDED; -fx-border-color: #000; -fx-border-radius: 5;">
          <font>
             <Font name="Arial" size="14.0" />
          </font></PasswordField>

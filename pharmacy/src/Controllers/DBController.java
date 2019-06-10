@@ -43,7 +43,6 @@ public class DBController {
         try {
             statement = dbConnection.createStatement();
             resultSet = statement.executeQuery(query);
-
             while (resultSet.next()){
                 id = resultSet.getString(1);
                 name = resultSet.getString(2);
@@ -65,7 +64,6 @@ public class DBController {
         try {
             statement = dbConnection.createStatement();
             resultSet = statement.executeQuery(query);
-
             while (resultSet.next()){
                 id = resultSet.getString(1);
                 name = resultSet.getString(2);
@@ -107,11 +105,9 @@ public class DBController {
 
     //получение пользователя для входа в программу
     public User getUserForSignIn(String login, String password) {
-
         String id = "", name = "", surname = "", phone = "", card = "", city = "", street = "", house = "", purchase = "";
         query = "SELECT * FROM " + Const.USER_TABLE + " WHERE " +
                 Const.USERS_LOGIN + " = '" + login + "' AND " + Const.USERS_PASSWORD + " = '" + password + "'";
-
         try {
             statement = dbConnection.createStatement();
             resultSet = statement.executeQuery(query);
@@ -137,12 +133,10 @@ public class DBController {
 
     //получение пользователя
     public User getUser(String nameCourier, String surnameCourier) {
-
         String id = "", name = "", surname = "", phone = "", card = "", login = "", password = "",
                 city = "", street = "", house = "", purchase = "";
         query = "select * from пользователи where логин = (select заказы from курьеры where имя = '" +
                 nameCourier + "' and фамилия = '" + surnameCourier + "')";
-
         try {
             statement = dbConnection.createStatement();
             resultSet = statement.executeQuery(query);
@@ -307,7 +301,6 @@ public class DBController {
         String name = "";
         Statement statement;
         ResultSet resultSet;
-
         query = "SELECT " + Const.USERS_NAME + " FROM " + Const.USER_TABLE + " WHERE логин = '" + login +"'";
         try {
             statement = dbConnection.createStatement();
@@ -315,7 +308,6 @@ public class DBController {
             while (resultSet.next()){
                 name = resultSet.getString(1);
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -326,7 +318,6 @@ public class DBController {
         String surname = "";
         Statement statement;
         ResultSet resultSet;
-
         query = "SELECT " + Const.USERS_SURNAME + " FROM " + Const.USER_TABLE + " WHERE логин = '" + login +"'";
         try {
             statement = dbConnection.createStatement();
@@ -334,7 +325,6 @@ public class DBController {
             while (resultSet.next()){
                 surname = resultSet.getString(1);
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -1,9 +1,7 @@
 package Controllers;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 import Obgects.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -13,26 +11,15 @@ import javafx.scene.control.TextField;
 public class Controller {
 
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
     private Button signInButton;
-
     @FXML
     private Button signUpButton;
-
     @FXML
     private Button signInAdminButton;
-
     @FXML
     private Button signInCourierButton;
-
     @FXML
     private TextField login_field;
-
     @FXML
     private PasswordField password_field;
 
