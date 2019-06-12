@@ -43,7 +43,7 @@ public class ShoppingBarController {
             checkout(login);
             if (totalPriceField.getText().equals("") || totalPriceField.getText().equals("0.0")){
                 try {
-                    MainController.showModalScene(event, "/Samples/Error.fxml");
+                    MainController.showModalScene(event, "/Samples/ErrorWindow.fxml");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -76,7 +76,7 @@ public class ShoppingBarController {
 
     private void checkout(String userLogin){
         int purchase = 0;
-        String query = "SELECT " + Const.USERS_PURCHASES + " FROM pharmacy." + Const.USER_TABLE +
+        String query = "SELECT " + Const.USERS_PURCHASES + " FROM " + Const.USER_TABLE +
                 " WHERE " + Const.USERS_LOGIN + " = '" + userLogin + "'";
         try {
             dbController.statement = dbController.dbConnection.createStatement();
@@ -85,7 +85,7 @@ public class ShoppingBarController {
                 purchase = dbController.resultSet.getInt(1);
             }
             purchase = purchase + 1;
-            query = "UPDATE pharmacy." + Const.USER_TABLE + " SET " + Const.USERS_PURCHASES + " = '" + purchase
+            query = "UPDATE " + Const.USER_TABLE + " SET " + Const.USERS_PURCHASES + " = '" + purchase
                     + "' WHERE логин = '" + userLogin + "';";
             dbController.statement.executeUpdate(query);
             findingTheRemainder();
@@ -100,7 +100,7 @@ public class ShoppingBarController {
         int quantity = Integer.parseInt(medicament.getQuantity());
         int remainder = quantity - Integer.parseInt(quantityMedicament.getText().trim());
         String r = String.valueOf(remainder);
-        String query = "update pharmacy." + Const.MEDICAMENT_TABLE + " SET " + Const.MEDICAMENT_QUANTITY + " = '" + r
+        String query = "update " + Const.MEDICAMENT_TABLE + " SET " + Const.MEDICAMENT_QUANTITY + " = '" + r
                 + "' WHERE (id = '" + idMedicament.getText().trim() + "')";
         try {
             dbController.statement = dbController.dbConnection.createStatement();
@@ -111,7 +111,7 @@ public class ShoppingBarController {
     }
 
     private void orderRegistration(){
-        String query = "INSERT pharmacy." + Const.ORDER_TABLE + " (" + Const.ORDER_LOGIN_USER + ", " +
+        String query = "INSERT " + Const.ORDER_TABLE + " (" + Const.ORDER_LOGIN_USER + ", " +
                 Const.ORDER_ID_MEDICAMENT + ", " + Const.ORDER_MEDICAMENT_QUANTITY + ", " +
                 Const.ORDER_PRICE + ") VALUES ('" + login + "', '" + idMedicament.getText() + "', '" +
                 quantityMedicament.getText() + "', '" + totalPrice(Integer.parseInt(quantityMedicament.getText().trim())) + "')";
@@ -125,7 +125,7 @@ public class ShoppingBarController {
 
     private void distribution() throws SQLException {
         String idCourier = "";
-        String query = "select id from курьеры where курьеры.заказы is null;";
+        String query = "select id from " + Const.COURIERS_TABLE + " where " + Const.COURIERS_ORDERS + " is null;";
         dbController.statement = dbController.dbConnection.createStatement();
         dbController.resultSet = dbController.statement.executeQuery(query);
         while (dbController.resultSet.next()){

@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 
 public class AddDialogController {
@@ -21,7 +22,11 @@ public class AddDialogController {
 
     @FXML
     void initialize() {
-        addButton.setOnAction(event -> addCouriers());
+        addButton.setOnAction(event -> {
+            addCouriers();
+            Stage errorStage = (Stage) addButton.getScene().getWindow();
+            errorStage.close();
+        });
     }
 
     private void addCouriers(){

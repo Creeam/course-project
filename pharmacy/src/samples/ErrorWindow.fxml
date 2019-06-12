@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane prefHeight="141.0" prefWidth="313.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ErrorSignUpController">
+<AnchorPane prefHeight="141.0" prefWidth="313.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ErrorWindowController">
    <children>
       <Text layoutX="84.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Проверьте правильность введённыхданных" wrappingWidth="194.7265625">
          <font>

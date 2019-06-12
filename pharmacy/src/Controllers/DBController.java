@@ -29,7 +29,6 @@ public class DBController {
         String connectionString = "jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName +
                 "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
         dbConnection = DriverManager.getConnection(connectionString, dbUser, dbPass);
-        System.out.println("Connection done");
         statement = dbConnection.createStatement();
         return dbConnection;
     }
@@ -79,7 +78,7 @@ public class DBController {
 
     //добавление курьера
     public void addCouriers(Couriers couriers){
-        query = "INSERT INTO pharmacy." + Const.COURIERS_TABLE + " ("+ Const.COURIERS_NAME +", "+ Const.COURIERS_SURNAME +", "+
+        query = "INSERT INTO " + Const.COURIERS_TABLE + " ("+ Const.COURIERS_NAME +", "+ Const.COURIERS_SURNAME +", "+
                 Const.COURIERS_PASSWORD +") VALUES ('" +couriers.getName()+ "', '" + couriers.getSurname() + "', '" +
                 couriers.getPassword() + "')";
         try {
@@ -93,7 +92,7 @@ public class DBController {
 
     //удаление курьера
     public void removeCouriers(String id, String surname){
-        query = "DELETE FROM pharmacy."+ Const.COURIERS_TABLE +" WHERE id = '" + id + "' AND фамилия = '" + surname + "'";
+        query = "DELETE FROM "+ Const.COURIERS_TABLE +" WHERE id = '" + id + "' AND фамилия = '" + surname + "'";
         try {
             statement = dbConnection.createStatement();
             statement.executeUpdate(query);
@@ -135,7 +134,7 @@ public class DBController {
     public User getUser(String nameCourier, String surnameCourier) {
         String id = "", name = "", surname = "", phone = "", card = "", login = "", password = "",
                 city = "", street = "", house = "", purchase = "";
-        query = "select * from пользователи where логин = (select заказы from курьеры where имя = '" +
+        query = "select * from " + Const.USER_TABLE + " where логин = (select заказы from курьеры where имя = '" +
                 nameCourier + "' and фамилия = '" + surnameCourier + "')";
         try {
             statement = dbConnection.createStatement();
@@ -286,7 +285,7 @@ public class DBController {
             while (resultSet.next()) {
                 temp.put("Имя", getUserName(resultSet.getString(2)));
                 temp.put("Фамилия", getUserSurname(resultSet.getString(2)));
-                temp.put("Препарат", getItem(resultSet.getInt(3)));
+                temp.put("Покупка", getItem(resultSet.getInt(3)));
                 temp.put("Количество", resultSet.getString(4));
                 temp.put("Цена", resultSet.getString(5));
                 map.add(new HashMap(temp));

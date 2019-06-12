@@ -48,14 +48,14 @@ public class Controller {
                     }
                 } else {
                     try {
-                        MainController.showModalScene(event, "/Samples/Error.fxml");
+                        MainController.showModalScene(event, "/Samples/ErrorWindow.fxml");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
             } else {
                 try {
-                    MainController.showModalScene(event, "/Samples/Error.fxml");
+                    MainController.showModalScene(event, "/Samples/ErrorWindow.fxml");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

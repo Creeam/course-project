@@ -42,15 +42,17 @@ public class SignUpController {
             phone_field.getText().equals("") || card_field.getText().equals("") ||
             house_field.getText().equals("") || street_field.getText().equals("") ||
             city_field.getText().equals(""))  {
+                System.out.println("123");
                 try {
-                    MainController.showModalScene(event, "/Samples/Error.fxml");
+                    MainController.showModalScene(event, "/Samples/ErrorWindow.fxml");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            } else if (!phone_field.getText().matches("[+0-9]\\d{12}") ||
+            } else if (!phone_field.getText().matches("[\\d+]{11}?") ||
                         !card_field.getText().matches("[0-9]\\d{15}")) {
+                System.out.println("456");
                 try {
-                    MainController.showModalScene(event, "/Samples/Error.fxml");
+                    MainController.showModalScene(event, "/Samples/ErrorWindow.fxml");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

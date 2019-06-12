@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class RemoveDialogController {
 
@@ -25,6 +26,8 @@ public class RemoveDialogController {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+            Stage errorStage = (Stage) removeButton.getScene().getWindow();
+            errorStage.close();
         });
     }
 }
